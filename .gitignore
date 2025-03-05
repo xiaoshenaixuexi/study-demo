@@ -1,6 +1,6 @@
 ### customer
 .idea
-study-demo.iml
+*.iml
 
 ### Java template
 # Compiled class file
