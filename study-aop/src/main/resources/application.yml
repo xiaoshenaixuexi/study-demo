@@ -1,0 +1,11 @@
+server:
+  port: 20000
+
+spring:
+  application:
+    name: aop-demo
+
+switch:
+  test1: true
+  test2: false
+  test3: aaabb
