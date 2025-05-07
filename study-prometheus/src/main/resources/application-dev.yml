@@ -1,0 +1,13 @@
+
+
+
+management:
+  endpoints:
+    enabled-by-default: true #暴露所有端点信息
+    web:
+      exposure:
+        include: prometheus  # 暴露 prometheus 端点
+  #        include: 'health,info,metrics,loggers' # 开启部分端点
+
+  server:
+    port: 40001 # actuator 端口可以和应用端口不一致
