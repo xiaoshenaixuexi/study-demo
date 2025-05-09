@@ -13,46 +13,35 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  */
 
-@ConfigurationProperties(prefix = "switch")
+@ConfigurationProperties(prefix = "downstream.system.switch")
 @Component
 public class SwitchProperties {
 
-    private boolean test1;
-    private boolean test2;
-    private String test3;
+    private boolean shipout;
+    private boolean koda;
 
     public Object get(String key) {
-        if ("test1".equals(key)) {
-            return test1;
-        } else if ("test2".equals(key)) {
-            return test2;
-        } else if ("test3".equals(key)) {
-            return test3;
+        if ("shipout".equals(key)) {
+            return shipout;
+        } else if ("koda".equals(key)) {
+            return koda;
         }
         return null;
     }
 
-    public String getTest3() {
-        return test3;
+    public boolean getShipout() {
+        return shipout;
     }
 
-    public void setTest3(String test3) {
-        this.test3 = test3;
+    public boolean getKoda() {
+        return koda;
     }
 
-    public boolean getTest1() {
-        return test1;
+    public void setKoda(boolean koda) {
+        this.koda = koda;
     }
 
-    public void setTest1(boolean test1) {
-        this.test1 = test1;
-    }
-
-    public boolean getTest2() {
-        return test2;
-    }
-
-    public void setTest2(boolean test2) {
-        this.test2 = test2;
+    public void setShipout(boolean shipout) {
+        this.shipout = shipout;
     }
 }

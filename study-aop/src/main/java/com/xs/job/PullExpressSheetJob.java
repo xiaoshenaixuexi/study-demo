@@ -18,7 +18,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class PullExpressSheetJob {
 
-    @EnableFeature(value = "test2")
+    /**
+     * 模拟两个定时任务
+     */
+    @EnableFeature(value = "shipout")
+    @Scheduled(cron = "0 0/1 * * * ?")
+    public void pushOrder() {
+        System.out.println("============开始执行定时任务============");
+        System.out.println("推算订单");
+        System.out.println("============终止执行定时任务============");
+    }
+
+
+    @EnableFeature(value = "koda")
     @Scheduled(cron = "0 0/1 * * * ?")
     public void pullExpressSheet() {
         System.out.println("============开始执行定时任务============");

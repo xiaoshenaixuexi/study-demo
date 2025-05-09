@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 /**
  * ClassName: EnableFeatureAspect
  * Package: com.xs.aspect
- * Description:
+ * Description:开关控制切面
  *
  * @Author 高伟
  * @Create 2025/5/7 11:36
@@ -76,10 +76,10 @@ public class EnableFeatureAspect {
                     throw new RuntimeException(e);
                 }
             } else {
-                return "Feature disabled";
+                return null;
             }
         } else {
-            return "Feature disabled";
+            return null;
         }
     }
 
