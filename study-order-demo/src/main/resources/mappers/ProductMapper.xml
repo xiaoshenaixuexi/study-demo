@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xs.mapper.ProductMapper">
+
+    <resultMap id="BaseResultMap" type="com.xs.entity.Product">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="deleted" column="deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,quantity,
+        price,create_time,update_time,
+        deleted
+    </sql>
+
+    <update id="deductStock">
+        update
+            t_product
+        set
+            quantity = quantity -  #{quantity}
+        where
+            id = #{productId} and quantity >= #{quantity}
+    </update>
+
+</mapper>

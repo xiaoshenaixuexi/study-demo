@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xs.mapper.OrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.xs.entity.Order">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="orderCode" column="order_code" jdbcType="VARCHAR"/>
+            <result property="customer" column="customer" jdbcType="VARCHAR"/>
+            <result property="productId" column="product_id" jdbcType="BIGINT"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="deleted" column="deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_code,customer,product_id,product_name,
+        quantity,order_status,create_time,update_time,deleted
+    </sql>
+    <insert id="insert">
+        insert into t_order (order_code,customer,product_id,product_name,quantity, order_status)
+        values (#{order.orderCode},#{order.customer},#{order.productId},#{order.productName},#{order.quantity}, #{order.orderStatus})
+    </insert>
+</mapper>
