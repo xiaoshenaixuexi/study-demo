@@ -1,0 +1,6 @@
+server:
+  port: 20210
+
+spring:
+  application:
+    name: study-docker
