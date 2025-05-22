@@ -4,3 +4,50 @@ server:
 spring:
   application:
     name: study-docker
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.203:3306/order_demo?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      min-idle: 1                                          # 最小连接数
+      max-active: 8                                         # 最大连接数(默认8)
+      max-wait: 1000                                       # 获取连接时的最大等待时间
+      min-evictable-idle-time-millis: 300000               # 一个连接在池中最小生存的时间，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+  rabbitmq:
+    host: 192.168.1.203
+    port: 5672
+    username: admin
+    password: 123
+    # 设置确认回调 ReturnCallBack 生产者确认回调，当消息未路由到任何队列，RabbitMQ会将消息返回给生产者
+    publisher-returns: true
+    template:
+      mandatory: true
+    # 设置确认回调 ConfirmCallBack 生产者确认模式，每个消费有一个唯一ID，当消息被确认时，RabbitMQ会返回这个ID
+    publisher-confirm-type: correlated
+    # 开启消费端 手动确认 消费者需手动确认消息被消费掉
+    listener:
+      simple:
+        acknowledge-mode: manual
+  redis:
+    port: 6379
+    host: 192.168.1.203
+    password: 123456
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: 1ms
+        max-idle: 8
+        min-idle: 0
+
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.xs.entity
+  #开启驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

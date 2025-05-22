@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  study-docker:
+    image: study-docker:1.0
+    container_name: study-docker
+    ports:
+      - "20210:20210"
+    volumes:
+      - /app/app/logs:/app/log/logs
+    restart: always
+    depends_on:
+      - redis
+      - mysql
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=123
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - /app/rabbitmq:/var/lib/rabbitmq
+    restart: always
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - /app/redis/data:/data
+      - /app/redis/redis.conf:/etc/redis/redis.conf
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - /app/mysql/log:/var/log/mysql
+      - /app/mysql/data:/var/lib/mysql
+      - /app/mysql/conf:/etc/mysql/conf.d
+    restart: always
