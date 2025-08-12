@@ -1,0 +1,1 @@
+com.xs.spi.DataBaseSPI = com.xs.spi.DB2DataBase, com.xs.spi.MySqlDataBase
