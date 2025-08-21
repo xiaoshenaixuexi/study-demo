@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
 @Component
-public class WmsExceptionHandler {
+public class GlobalExceptionHandler {
 
     /**
      * 自定义异常捕捉处理

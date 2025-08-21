@@ -19,6 +19,9 @@ public class Result<T> {
     private String message;// 返回信息
     private T data;
 
+    public Result() {
+    }
+
     public Result(String code, String message) {
         this.code = code;
         this.message = message;
